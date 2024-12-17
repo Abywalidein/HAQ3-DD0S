@@ -28,9 +28,7 @@ logo = """
 faded_text = fade.fire(logo)
 print(faded_text)
 
-        if len(sys.argv) < 5:
-        print "God-Flood By LiGhT"
-        sys.exit("Usage: python "+sys.argv[0]+" <ip> <port> <size> <time>")
+sys.exit("Usage: python "+sys.argv[0]+" <ip> <port> <size> <time>")
 
 ip = sys.argv[1]
 port = int(sys.argv[2])
