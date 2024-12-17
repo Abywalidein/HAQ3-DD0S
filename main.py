@@ -19,11 +19,12 @@ logo = """
 _/       _/  _/       _/   _/ _/ _/                      _/
                                   _/             _/ _/ _/                                                                                 
 
-═════════════════════════════════════════════════════════
-
-
-
-═════════════════════════════════════════════════════════
+╔════════════════════════════════════════════════════════╗
+║\033[33m                      ~ HUDAIRUL AL-AQSHA ~               ║
+║\033[32m                         INTERNAL SCRIPT               ║
+║\033[37m                            By: Aby'W               ║
+║\033[96m                             ——o0o——               ║
+╚════════════════════════════════════════════════════════╝
 """
 faded_text = fade.fire(logo)
 print(faded_text)
@@ -36,9 +37,9 @@ async def increment_view_count(session):
     try:
         async with session.get(url) as response:
             if response.status == 200:
-                print("PINGED THIS SHI!")
+                print("\033[95m[💥]  \033[96mHUDAIRUL-AQSHA  \033[97m Attack status \033[33m" +str(url)+ "  \033[36mHacking\033[0m")
             else:
-                print("Failed ping.")
+                print("\033[33m[!]  \033[33mHUDAIRUL-AQSHA  \033[36m Attack status \033[35m" +str(url)+ "  \033[93mHacking\033[0m")
     except aiohttp.ClientError as e:
         print("An error occurred:", e)
 
