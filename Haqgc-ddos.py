@@ -1,3 +1,30 @@
+import socket
+import threading
+import os
+import sys
+import time
+import random
+import fade
+
+
+os.system("clear")
+print(logo)
+logo = """
+_____       ___         _____          _________    _________
+|   |      |  |        /     \        /   ___   \  /______   \
+|   |      |  |       /   /\  \      |   |    |  |        |   |
+|   |      |  |      /   /  \  \     |   |    |  |     __/   /
+|   |______|  |     /   /    \  \    |   |    |  |   /___    \
+|    ______   |    /   /______\  \   |   |    |  |        \   |
+|   |      |  |   /   _________   \  |   |____|  |  ______/   /
+|___|      |__|  /___/          \__\  \______    /  \________/
+                                             \___\
+═════════════════════════════════════════════════════════
+
+
+
+═════════════════════════════════════════════════════════
+"""
 def main():
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 bytes = random._urandom(1492)
