@@ -28,8 +28,6 @@ logo = """
 """
 faded_text = fade.fire(logo)
 print(faded_text)
-faded_text2 = fade.ind(txt)
-print(faded_text2)
 ask = fade.pinkred("\033[96mEnter the target IP/URL: \033[0m")
 url = input(ask)
 
