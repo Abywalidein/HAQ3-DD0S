@@ -35,7 +35,7 @@ async def increment_view_count(session):
     try:
         async with session.get(url) as response:
             if response.status == 200:
-                print("\033[95m[💥] \033[96mHUDAIRUL-AQSHA \033[97m Attack status \033[33m" +str(url)+ "  \033[36mHacking\033[0m")
+                print("\033[95m[💥] \033[96mHUDAIRUL-AQSHA \033[97m Attack status \033[33m" +str(url)+ "  \033[92mHacking\033[0m")
             else:
                 print("\033[33m[*] \033[33mHUDAIRUL-AQSHA \033[36m Attack status \033[35m" +str(url)+ "  \033[93mHacking\033[0m"),
     except aiohttp.ClientError as e:
