@@ -17,20 +17,20 @@ logo = """
       _/ _/ _/ _/  _/       _/  _/       _/  _/ _/    _/ _/ _/
      _/       _/  _/ _/ _/ _/  _/   _/  _/                   _/
     _/       _/  _/       _/   _/ _/ _/                      _/
-                                  _/             _/ _/ _/                                                                                 
+                                  _/                 _/ _/ _/                                                                                 
 
 ╔═════════════════════════════════════════════════════════════════╗
-║\033[33m                           ~ HUDAIRUL AL-AQSHA ~            \033[31")║
-║\033[32m                              INTERNAL SCRIPT              \033[31m")║
-║\033[37m                                 By: Aby'W                 \033[31m")║
-║\033[96m                                  ——o0o——                  \033[31m")║
+║\033[33m                 ~ H U D A I R U L  A L - A Q S H A ~            \033[31m║
+║\033[32m                     I N T E R N A L  S C R I P T                \033[31m║
+║\033[96m                               By: Aby'W                         \033[31m║
+║\033[37m                                ——o0o——                          \033[31m║
 ╚═════════════════════════════════════════════════════════════════╝
 """
 faded_text = fade.fire(logo)
 print(faded_text)
 faded_text2 = fade.ind(txt)
 print(faded_text2)
-ask = fade.pinkred("Enter the target IP/URL:")
+ask = fade.pinkred("\033[96mEnter the target IP/URL: \033[0m")
 url = input(ask)
 
 async def increment_view_count(session):
