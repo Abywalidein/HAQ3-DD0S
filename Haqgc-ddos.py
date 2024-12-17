@@ -6,7 +6,10 @@ import socket
 import threading
 import fade
 #import time as clock
+test_list = [1, 2, 3, 4]
 
+for i in range(len(test_list)):
+    print(test_list[i])
 host = str(sys.argv[1])
 port = int(sys.argv[2])
 #time = int(sys.argv[4])
