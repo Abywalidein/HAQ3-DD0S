@@ -28,7 +28,7 @@ logo = """
 """
 faded_text = fade.fire(logo)
 print(faded_text)
-ask = fade.pinkred("\033[96m==⟩⟩ Run SC butuh wkt 35 detik: IP/URL: \033[0m")
+ask = fade.pinkred("\033[96m==⟩⟩ Run SC butuh wkt 35 detik dg Target URL: \033[0m")
 url = input(ask)
 
 async def increment_view_count(session):
