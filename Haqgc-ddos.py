@@ -97,7 +97,7 @@ while True:
         t.start()
         s.start()
     except KeyboardInterrupt:
-        print "Stopping Flood!"
+        print("Stopping Flood!")
         sys.exit()
     except socket.error, msg:
         print "Socket Couldn't Connect"
